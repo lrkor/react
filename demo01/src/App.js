@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
+import Button from 'antd/lib/button';
+import './App.css';
 
 class App extends Component{
     render() {
         return (
-            <ul className="my-list">
-                <li>{false?'lrkor':'222'}</li>
-                <li>love react</li>
-            </ul>
+            <div className="App">
+                <Button type="primary">Button</Button>
+            </div>
         )
     }
 }

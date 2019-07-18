@@ -1,3 +1,7 @@
 .input{
-    border: 3px solid #ae7000;
+    border: 1px solid #666;
+}
+
+.btn{
+    margin-left: 20px;
 }

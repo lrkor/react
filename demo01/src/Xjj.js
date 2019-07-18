@@ -16,17 +16,16 @@ class Xjj extends Component {
         return (
             <Fragment>
                 <div>
-                    <label htmlFor="go">增加服务</label>
+                    <label htmlFor="go">增加服务：</label>
                     <input id="go" className="input" type="text" value={this.state.intVal}
                            onChange={this.inputChange.bind(this)}/>
-                    <button onClick={this.addList.bind(this)}>增加服务</button>
+                    <button className="btn" onClick={this.addList.bind(this)}>增加服务</button>
                     <ul>
                         {
                             this.state.list.map((item, index) => {
                                 return (
                                     <XJJItem
                                         key={index+item}
-                                        // name='大姐姐'
                                         content={item}
                                         index={index}
                                         delItem={this.delItem.bind(this)}
