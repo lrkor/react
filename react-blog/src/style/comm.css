@@ -1,13 +1,12 @@
-/* html,body{
-    height: 100%;
+body {
+    background-color: #f4f5f5!important;
 }
-#root{
-    height: 100%;
-    overflow-y: scroll;
-} */
-.main{
-    margin-top: 50px;
+
+.main {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    margin-top: 70px;
+    background-color: #fff;
+    margin-bottom: 20px;
 }

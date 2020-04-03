@@ -1,0 +1,33 @@
+.web-item{
+    display: flex;
+    flex-direction: column;
+}
+
+.web-item-title{
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.web-item-content{
+    margin-top: 10px;
+    padding: 0 15px;
+    color: #333;
+    font-size: 14px;
+}
+
+.web-item-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    margin-top: 10px;
+}
+
+.web-item-footer-time{
+    color: #666;
+}
+
+.web-item-footer-number{
+    color: #333;
+}

@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { Avatar, Menu } from 'antd'
-import '../style/component/header.css'
 import { CopyOutlined, CoffeeOutlined, BookOutlined } from '@ant-design/icons';
+import { Link  } from "react-router-dom";
+import '../style/component/header.css'
+
 
 class Header extends Component {
     constructor(props) {
@@ -24,6 +26,7 @@ class Header extends Component {
                 <div className="header">
                     <div className="header-left">
                         <div className="header-left-title">
+                            {/* <Link to="/"></Link> */}
                             Lrkor的博客
                         </div>
                         <div className="header-left-list">

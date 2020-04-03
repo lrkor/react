@@ -25,6 +25,7 @@
     display: flex;
     height: 100%;
     align-items: center;
+    font-weight: bold;
 }
 .header-left-list-item{
     padding: 0 20px;
