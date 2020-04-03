@@ -1,0 +1,10 @@
+{
+  "plugins":[                //增加新的插件，这个插件就是让antd可以按需引入，包括CSS
+    [
+      "import",
+      {
+        "libraryName":"antd"
+      }
+    ]
+  ]
+}

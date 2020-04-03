@@ -1,0 +1,13 @@
+/* html,body{
+    height: 100%;
+}
+#root{
+    height: 100%;
+    overflow-y: scroll;
+} */
+.main{
+    margin-top: 50px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
