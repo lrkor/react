@@ -21,6 +21,9 @@
     margin-right: 40px;
     font-size: 24px;
 }
+.header-left-title a{
+    color: #fff!important;
+}
 .header-left-list{
     display: flex;
     height: 100%;
@@ -57,3 +60,4 @@
 .ant-menu-horizontal{
     border: none!important;
 }
+

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Avatar, Menu } from 'antd'
 import { CopyOutlined, CoffeeOutlined, BookOutlined } from '@ant-design/icons';
-import { Link  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../style/component/header.css'
 
 
@@ -26,8 +26,7 @@ class Header extends Component {
                 <div className="header">
                     <div className="header-left">
                         <div className="header-left-title">
-                            {/* <Link to="/"></Link> */}
-                            Lrkor的博客
+                            <Link to="/" >Lrkor的博客</Link>
                         </div>
                         <div className="header-left-list">
                             <Menu onClick={this.handleClick.bind(this)} selectedKeys={[this.state.current]} mode="horizontal">
