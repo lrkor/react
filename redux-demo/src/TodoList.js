@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import 'antd/dist/antd.css'
 // import { Input, Button, List } from 'antd'
-import axios from 'axios'
+// import axios from 'axios'
 import store from './store'
 import TodoListUI from './view/TodoListUI'
 // import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './store/actionTypes'
-import { changeInputAction, addItem, delItems, getListAction } from './store/actionCreators'
+import { changeInputAction, addItem, delItems, getListAction ,getTodoList } from './store/actionCreators'
 
 class TodoList extends Component {
 
@@ -21,12 +21,15 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
-        axios.get('/static/demo.json').then((res) => {
-            const list = [...res.data.data.list];
-            // const val = res.data.data.val;
-            const action = getListAction(list)
-            store.dispatch(action)
-        })
+        
+        // axios.get('/static/demo.json').then((res) => {
+        //     const list = [...res.data.data.list];
+        //     // const val = res.data.data.val;
+        //     // const action = getListAction(list)
+           
+        // })
+        const action = getTodoList()
+        store.dispatch(action)
     }
 
     render() {
