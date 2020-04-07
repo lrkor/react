@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { List } from 'antd'
-import { Link  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../../style/page/web/list.css'
 
 const data = [1, 2, 3, 4, 5];
@@ -10,7 +10,6 @@ class WebList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            current: 'web',
         }
     }
     render() {
@@ -23,7 +22,7 @@ class WebList extends Component {
                             <List.Item>
                                 <div className="web-item">
                                     <div className="web-item-title">
-                                        <Link to="/web/detail/454">es6第一天</Link>                
+                                        <Link to="/web/detail/454">es6第一天</Link>
                                     </div>
                                     <div className="web-item-content">
                                         简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介

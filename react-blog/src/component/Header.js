@@ -32,15 +32,15 @@ class Header extends Component {
                             <Menu onClick={this.handleClick.bind(this)} selectedKeys={[this.state.current]} mode="horizontal">
                                 <Menu.Item key="web">
                                     <CopyOutlined className="header-left-list-item-icon" />
-                                        web前端
+                                    <Link to="/">web前端</Link>
                                 </Menu.Item>
                                 <Menu.Item key="life">
                                     <CoffeeOutlined className="header-left-list-item-icon" />
-                                    生活
+                                    <Link to="/life/list/">生活</Link>
                                 </Menu.Item>
                                 <Menu.Item key="book">
                                     <BookOutlined className="header-left-list-item-icon" />
-                                    读书
+                                    <Link to="/book/list/">读书</Link>
                                 </Menu.Item>
                             </Menu>
                             {/* <div className="header-left-list-item"><CopyOutlined className="header-left-list-item-icon" />web前端</div>
