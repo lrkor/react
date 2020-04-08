@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Button } from 'antd';
+import Index from '../page/index';
+import '../style/comm.css'
 
 class AppRouter extends Component {
     render() {
         return (
             <Router>
-                <div className="main">
+                <Index />
+                {/* <div className="main">
                     <Switch>
                    
                     </Switch>
-                </div>
+                </div> */}
             </Router>
         );
     }
