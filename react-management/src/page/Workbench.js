@@ -36,13 +36,13 @@ class Workbench extends Component {
     changeContent = (e) => {
         console.log(e.target.value);
         let html = marked(e.target.value);
-        console.log(this.state.markdownContent)         
+        console.log(this.state.markdownContent)
         this.setState({
             markdownContent: html,
-            articleContent:e.target.value
+            articleContent: e.target.value
         })
         // console.log(this.props.markdownContent);
-        
+
     }
 
 
@@ -56,17 +56,18 @@ class Workbench extends Component {
                                 <Col span={20}>
                                     <Input
                                         placeholder="博客标题"
-                                        size="large" />
+                                    />
                                 </Col>
                                 <Col span={4}>
                                     &nbsp;
-                                        <Select defaultValue="Sign Up" size="large">
-                                        <Option value="Sign Up">视频教程</Option>
+                                        <Select defaultValue="1" style={{ width: 120 }}>
+                                        <Option value="1">web前端</Option>
+                                        <Option value="2">生活</Option>
+                                        <Option value="3">学习</Option>
                                     </Select>
                                 </Col>
                             </Row>
-                            <br />
-                            <Row gutter={10} >
+                            <Row gutter={10} style={{marginTop:'20px'}}>
                                 <Col span={12}>
                                     <TextArea
                                         className="markdown-content"
@@ -78,9 +79,8 @@ class Workbench extends Component {
                                 <Col span={12}>
                                     <div
                                         className="show-html"
-                                        dangerouslySetInnerHTML = {{__html:this.state.markdownContent}}
-                                        >
-
+                                        dangerouslySetInnerHTML={{ __html: this.state.markdownContent }}
+                                    >
                                     </div>
 
                                 </Col>
@@ -91,26 +91,18 @@ class Workbench extends Component {
                         <Col span={6}>
                             <Row>
                                 <Col span={24}>
-                                    <Button size="large">暂存文章</Button>&nbsp;
-                                     <Button type="primary" size="large">发布文章</Button>
-                                    <br />
+                                    <DatePicker
+                                        placeholder="发布日期"
+                                    />
+                                    <Button type="primary" style={{ marginLeft: '20px' }}>发布文章</Button>
+
                                 </Col>
                                 <Col span={24}>
-                                    <br />
                                     <TextArea
                                         rows={4}
                                         placeholder="文章简介"
+                                        style={{ marginTop: '20px' }}
                                     />
-                                    <br /><br />
-                                    <div className="introduce-html"></div>
-                                </Col>
-                                <Col span={12}>
-                                    <div className="date-select">
-                                        <DatePicker
-                                            placeholder="发布日期"
-                                            size="large"
-                                        />
-                                    </div>
                                 </Col>
                             </Row>
 
