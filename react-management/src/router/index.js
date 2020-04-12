@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import '../style/comm.css'
-import Web from '../page/Web'
-import Learn from '../page/Learn'
-import Life from '../page/Life'
+import WebList from '../page/web/List'
+import LearnList from '../page/learn/List'
+import LifeList from '../page/life/List'
+import Workbench from '../page/Workbench'
 
 import { Layout, Menu } from 'antd';
 const { Header, Content, Sider } = Layout;
-
+const { SubMenu } = Menu;
 
 
 class AppRouter extends Component {
@@ -33,9 +34,25 @@ class AppRouter extends Component {
                                 style={{ height: '100%', borderRight: 0 }}
                                 theme="dark"
                             >
-                                <Menu.Item key="1"><Link to="/">web前端</Link></Menu.Item>
-                                <Menu.Item key="2"><Link to="/learn">生活</Link></Menu.Item>
-                                <Menu.Item key="3"><Link to="/life">学习</Link></Menu.Item>
+                                <Menu.Item key="1"><Link to="/">工作台</Link></Menu.Item>
+                                <SubMenu
+                                    key="web"
+                                    title="web前端"
+                                >
+                                    <Menu.Item key="1"><Link to="/web/list">文章列表</Link></Menu.Item>
+                                </SubMenu>
+                                <SubMenu
+                                    key="life"
+                                    title="生活"
+                                >
+                                    <Menu.Item key="2"><Link to="/learn/list">文章列表</Link></Menu.Item>
+                                </SubMenu>
+                                <SubMenu
+                                    key="learn"
+                                    title="学习"
+                                >
+                                    <Menu.Item key="3"><Link to="/life/list">文章列表</Link></Menu.Item>
+                                </SubMenu>
                             </Menu>
                         </Sider>
                         <Layout>
@@ -46,12 +63,13 @@ class AppRouter extends Component {
                                     margin: 0,
                                     minHeight: 280,
                                 }}
-                            >
+                            > 
                                 <div className="main">
                                     <Switch>
-                                        <Route path="/" exact component={Web} />
-                                        <Route path="/learn/" component={Learn} />
-                                        <Route path="/life/" component={Life} />
+                                        <Route path="/" exact component={Workbench} />
+                                        <Route path="/web/list" exact component={WebList} />
+                                        <Route path="/learn/list" component={LearnList} />
+                                        <Route path="/life/list" component={LifeList} />
                                     </Switch>
                                 </div>
 
