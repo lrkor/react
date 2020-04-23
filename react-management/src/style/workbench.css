@@ -1,9 +1,10 @@
 .workbench{
     padding: 20px;
+    height: 100%;
 }
 .markdown-content {
     font-size: 16px !important;
-    max-height: 725px;
+    height: 500px!important;
 }
 
 .show-html {
@@ -11,7 +12,7 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
-    height: 725px;
+    height: 500px!important;
     background-color: #f0f0f0;
     overflow: auto;
 }
