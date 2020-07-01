@@ -1,1 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/springboot_db?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
 
+mybatis:
+  #config-locations: mybatis/mybatis-config.xml
+  mapper-locations: com/guxf/mapper/*.xml
+  type-aliases-package: com.guxf.mapper.AuthorMapper
