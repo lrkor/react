@@ -15,9 +15,10 @@ class AppRouter extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            defaultSelectedKeys:['1']
+        }
     }
-
     render() {
         return (
             <Router>
@@ -29,13 +30,18 @@ class AppRouter extends Component {
                         <Sider width={200} className="site-layout-background">
                             <Menu
                                 mode="inline"
-                                defaultSelectedKeys={['1']}
-                                defaultOpenKeys={['sub1']}
+                                defaultSelectedKeys={this.state.defaultSelectedKeys}
                                 style={{ height: '100%', borderRight: 0 }}
                                 theme="dark"
                             >
                                 <Menu.Item key="1"><Link to="/">工作台</Link></Menu.Item>
                                 <SubMenu
+                                    key="web"
+                                    title="文章管理"
+                                >
+                                    <Menu.Item key="2"><Link to="/web/list">文章列表</Link></Menu.Item>
+                                </SubMenu>
+                                {/* <SubMenu
                                     key="web"
                                     title="web前端"
                                 >
@@ -52,7 +58,7 @@ class AppRouter extends Component {
                                     title="学习"
                                 >
                                     <Menu.Item key="3"><Link to="/life/list">文章列表</Link></Menu.Item>
-                                </SubMenu>
+                                </SubMenu> */}
                             </Menu>
                         </Sider>
                         <Layout>

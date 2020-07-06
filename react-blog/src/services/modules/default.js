@@ -9,7 +9,7 @@ export default {
     }),
     getArticleById: (query) =>
     axios.get({
-      url: "/default/getArticleList",
+      url: "/default/getArticleById",
       data: query,
     }),
 };

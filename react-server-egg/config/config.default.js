@@ -10,7 +10,7 @@ module.exports = appInfo => {
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
-  const config = exports = {};
+  const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1593571051011_3449';
@@ -46,7 +46,7 @@ module.exports = appInfo => {
         enable: false,
         ignoreJSON: true,
       },
-      domainWhiteList: [ 'http://localhost:3000' ],
+      domainWhiteList: [ 'http://localhost:3000', 'http://localhost:3001' ],
     },
     cors: {
       origin: '*',
