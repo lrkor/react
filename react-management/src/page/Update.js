@@ -1,7 +1,18 @@
 import React, { Component, Fragment } from "react";
+import { Spin } from 'antd';
 import marked from "marked";
+import moment from 'moment';
 import "../style/workbench.css";
-import { Row, Col, Input, Select, Button, DatePicker } from "antd";
+import {
+  Row,
+  Col,
+  Input,
+  Select,
+  Button,
+  DatePicker,
+  Popconfirm,
+  message,
+} from "antd";
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -14,9 +25,10 @@ marked.setOptions({
   breaks: false,
   smartLists: true,
   smartypants: false,
+  loading: false,
 });
 
-class Workbench extends Component {
+class Update extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,6 +42,26 @@ class Workbench extends Component {
     };
   }
 
+  componentWillMount() {
+    const id = this.props.match.params.id;
+    this.setState({ loading: true });
+    React.$api.admin.detail({ id }).then((res) => {
+      console.log(res);
+      const data = res.data;
+      this.setState({
+        id,
+        title: data.title,
+        content: data.content,
+        markdownContent: marked(data.content),
+        introducemd: data.introducemd,
+        type: data.type,
+        time: data.time,
+      });
+      console.log(this.state);
+      this.setState({ loading: false });
+    });
+  }
+
   changeContent = (e) => {
     let html = marked(e.target.value);
     this.setState({
@@ -40,10 +72,11 @@ class Workbench extends Component {
 
   // 发布文章
   release = (e) => {
-    React.$api.admin.addArticle(this.state).then((res) => {
-        // let data = res.data;
-        // this.setState({ data });
-      });
+      console.log(this.state);
+    React.$api.admin.update(this.state).then((res) => {
+      message.success("更新成功");
+      this.props.history.push("/");
+    });
   };
 
   // 改变选择内容
@@ -64,6 +97,13 @@ class Workbench extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return (
+        <div className="loading">
+            <Spin />
+        </div>
+      );
+    }
     return (
       <Fragment>
         <div className="workbench">
@@ -71,12 +111,16 @@ class Workbench extends Component {
             <Col span={18}>
               <Row gutter={10}>
                 <Col span={20}>
-                  <Input onChange={this.changeTitle} placeholder="博客标题" />
+                  <Input
+                    defaultValue={this.state.title}
+                    onChange={this.changeTitle}
+                    placeholder="博客标题"
+                  />
                 </Col>
                 <Col span={4}>
                   &nbsp;
                   <Select
-                    defaultValue="1"
+                    defaultValue={this.state.type}
                     onChange={this.changeSelect}
                     style={{ width: 120 }}
                   >
@@ -89,6 +133,7 @@ class Workbench extends Component {
               <Row gutter={10} style={{ marginTop: "20px" }}>
                 <Col span={12}>
                   <TextArea
+                    defaultValue={this.state.content}
                     className="markdown-content"
                     rows={35}
                     onChange={this.changeContent}
@@ -112,18 +157,23 @@ class Workbench extends Component {
                   <DatePicker
                     onChange={this.changeDate}
                     placeholder="发布日期"
+                    defaultValue={moment(this.state.time, 'YYYY-MM-DD')}
                   />
-                  <Button
-                    type="primary"
-                    onClick={this.release}
-                    style={{ marginLeft: "20px" }}
-                  >
-                    发布文章
+                  <Button type="primary" style={{ marginLeft: "20px" }}>
+                    <Popconfirm
+                      title="确定新增吗?"
+                      onConfirm={() => this.release()}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      发布文章
+                    </Popconfirm>
                   </Button>
                 </Col>
                 <Col span={24}>
                   <TextArea
                     rows={4}
+                    defaultValue={this.state.introducemd}
                     onChange={this.changeTextArea}
                     placeholder="文章简介"
                     style={{ marginTop: "20px" }}
@@ -138,4 +188,4 @@ class Workbench extends Component {
   }
 }
 
-export default Workbench;
+export default Update;

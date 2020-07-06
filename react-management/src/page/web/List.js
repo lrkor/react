@@ -1,33 +1,38 @@
 import React, { Component } from "react";
-import { Button, Table } from "antd";
+import { Button, Table, Popconfirm, message } from "antd";
 import "../../style/list.css";
 
 class Web extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 1,
-      total2: 20,
+      page: 1,
+      total: 0,
+      list: [],
     };
-
     this.columns = [
       {
+        key: "id",
         title: "id",
         dataIndex: "id",
       },
       {
+        key: "title",
         title: "标题",
         dataIndex: "title",
       },
       {
+        key: "time",
         title: "上传时间",
         dataIndex: "time",
       },
       {
+        key: "type",
         title: "类型",
         dataIndex: "type",
       },
       {
+        key: "id",
         title: "操作",
         render: (text, record) => (
           <div>
@@ -38,116 +43,72 @@ class Web extends Component {
             >
               编辑
             </Button>
-            <Button danger onClick={() => this.del(record.id)}>
-              删除
+            <Button danger>
+              <Popconfirm
+                title="确定删除吗?"
+                onConfirm={() => this.del(record.id)}
+                okText="Yes"
+                cancelText="No"
+              >
+                删除
+              </Popconfirm>
             </Button>
           </div>
         ),
       },
     ];
-
-    this.data = [
-      {
-        id: "1",
-        title: "我的第一个文章",
-        time: "2020-04-18",
-        type: "web",
-      },
-      {
-        id: "2",
-        title: "我的第一个文章",
-        time: "2020-04-18",
-        type: "web",
-      },
-      {
-        id: "3",
-        title: "我的第一个文章",
-        time: "2020-04-18",
-        type: "web",
-      },
-      {
-        id: "4",
-        title: "我的第一个文章",
-        time: "2020-04-18",
-        type: "web",
-      },
-      {
-        id: "4",
-        title: "我的第一个文章",
-        time: "2020-04-18",
-        type: "web",
-      },
-      {
-        id: "4",
-        title: "我的第一个文章",
-        time: "2020-04-18",
-        type: "web",
-      },
-      {
-        id: "4",
-        title: "我的第一个文章",
-        time: "2020-04-18",
-        type: "web",
-      },
-      {
-        id: "4",
-        title: "我的第一个文章",
-        time: "2020-04-18",
-        type: "web",
-      },
-      {
-        id: "4",
-        title: "我的第一个文章",
-        time: "2020-04-18",
-        type: "web",
-      },
-      {
-        id: "4",
-        title: "我的第一个文章",
-        time: "2020-04-18",
-        type: "web",
-      },
-    ];
   }
 
   componentWillMount() {
-    React.$api.admin.list({ page: 1, size: 2 }).then((res) => {
-      console.log(res);
+    this.getList(1);
+  }
+
+  //获取列表
+  getList(page) {
+    React.$api.admin.list({ page, size: 10 }).then((res) => {
+      let list = res.data;
+      list.forEach((item) => {
+        item.type =
+          item.type === "1" ? "web前端" : item.type === "2" ? "生活" : "学习";
+      });
+      this.setState({ list, total: res.total });
+    });
+  }
+
+  //删除文章
+  del(id) {
+    React.$api.admin.delete({ id }).then((res) => {
+        this.getList(this.state.page);
+        message.success('删除成功');
     });
   }
 
   changePage = (page) => {
-    console.log(page);
-    this.setState({
-      current: page,
-    });
+    this.setState({ page });
+    this.getList(page);
   };
 
   update = (id) => {
-    console.log(id);
-  };
-
-  del = (id) => {
-    console.log(id);
+    this.props.history.push(`/update/${id}`)
   };
 
   render() {
     return (
       <div className="list">
         <div className="header">
-          <Button type="primary">新增</Button>
+          <Button type="primary" onClick={()=>this.props.history.push('/add')}>新增</Button>
         </div>
         <div className="table-body">
           <Table
             columns={this.columns}
-            dataSource={this.data}
+            dataSource={this.state.list}
             bordered
             pagination={{
-              current: this.state.current,
-              total: this.state.total2,
+              current: this.state.page,
+              total: this.state.total,
               onChange: this.changePage,
             }}
-            rowKey={(record, index) => index}
+            rowKey={(record, index) => record.id}
           />
         </div>
         <div className="table-paging"></div>
