@@ -20,7 +20,7 @@ class AppRouter extends Component {
   }
   render() {
     return (
-      <Router>
+      <Router basename="/management">
         <Layout>
           <Header className="header">博客后台管理系统</Header>
           <Layout>
