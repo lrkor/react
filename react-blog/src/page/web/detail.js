@@ -22,7 +22,12 @@ class WebDetail extends Component {
     React.$api.default.detail({ id }).then((res) => {
       let html = marked(res.data[0].content);
       this.setState({ html });
+      this.updateCount(id, res.data[0].count + 1);
     });
+  }
+
+  updateCount(id, count) {
+    React.$api.default.updateCount({ id, count }).then(() => {});
   }
 
   render() {

@@ -7,7 +7,12 @@ export default {
       url: "/default/list",
       data: query,
     }),
-    detail: (query) =>
+  updateCount: (query) =>
+    axios.post({
+      url: "/default/updateCount",
+      data: query,
+    }),
+  detail: (query) =>
     axios.get({
       url: "/default/detail",
       data: query,
