@@ -41,14 +41,14 @@ class AdminController extends Controller {
     const sql = `SELECT article.id as id,article.type as type,article.title as title,article.introduce as introduce,article.count as count,FROM_UNIXTIME(article.time,'%Y-%m-%d') as time FROM article limit ${
       (page - 1) * size
     },${size}`;
-    const sql1 = 'SELECT court(*) FROM article';
+    const sql1 = 'SELECT COUNT(*) FROM article';
     const result = await this.app.mysql.query(sql);
     const result1 = await this.app.mysql.query(sql1);
     this.ctx.body = {
       data: result,
       msg: '成功',
       code: 200,
-      total: result1,
+      total: result1[0]['COUNT(*)'],
     };
   }
 
