@@ -38,5 +38,6 @@
   },
   "devDependencies": {
     "egg-cors": "^2.2.3"
-  }
+  },
+  "homepage":"/blog/"
 }

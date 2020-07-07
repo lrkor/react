@@ -12,7 +12,7 @@ import LifeList from '../page/life/List'
 class AppRouter extends Component {
     render() {
         return (
-            <Router>
+            <Router basename="/blog">
                 <Header />
                 <div className="main">
                     <Switch>

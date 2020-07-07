@@ -11,7 +11,7 @@ class WebList extends Component {
     };
   }
   componentWillMount() {
-    React.$api.default.list({type:1}).then((res) => {
+    React.$api.default.list({type:'1'}).then((res) => {
       let data = res.data;
       this.setState({ data });
     });
