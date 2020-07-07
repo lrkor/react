@@ -2,14 +2,14 @@ import axios from "../axios";
 
 export default {
   // 搜索列表
-  getArticleList: (query) =>
-    axios.get({
-      url: "/default/getArticleList",
+  list: (query) =>
+    axios.post({
+      url: "/default/list",
       data: query,
     }),
-    getArticleById: (query) =>
+    detail: (query) =>
     axios.get({
-      url: "/default/getArticleById",
+      url: "/default/detail",
       data: query,
     }),
 };

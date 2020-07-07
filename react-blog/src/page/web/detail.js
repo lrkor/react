@@ -19,7 +19,7 @@ class WebDetail extends Component {
 
   componentWillMount() {
     const id = this.props.match.params.id;
-    React.$api.default.getArticleById({ id }).then((res) => {
+    React.$api.default.detail({ id }).then((res) => {
       let html = marked(res.data[0].content);
       this.setState({ html });
     });

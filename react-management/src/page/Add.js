@@ -26,7 +26,7 @@ class Add extends Component {
       markdownContent: "", //html内容
       introducemd: "", //简介内容
       time: "", //发布日期
-      type: "", //选择的文章类别
+      type: "1", //选择的文章类别
     };
   }
 
@@ -76,7 +76,7 @@ class Add extends Component {
                 <Col span={4}>
                   &nbsp;
                   <Select
-                    defaultValue="1"
+                    defaultValue={this.state.type}
                     onChange={this.changeSelect}
                     style={{ width: 120 }}
                   >
