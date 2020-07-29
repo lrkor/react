@@ -1,26 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log(`useEffect=>You clicked ${count} times`);
+
+    return () => {
+      console.log("====================");
+    };
+  }, [count]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>You clicked {count} times</p>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        click me
+      </button>
+
+      <Router>
+        <ul>
+          <li>
+            {" "}
+            <Link to="/">首页</Link>{" "}
+          </li>
+          <li>
+            <Link to="/list/">列表</Link>{" "}
+          </li>
+        </ul>
+        <Route path="/" exact component={Index} />
+        <Route path="/list/" component={List} />
+      </Router>
     </div>
   );
+}
+
+function Index() {
+  useEffect(() => {
+    console.log("useEffect=>老弟，你来了！Index页面");
+    return () => {
+      console.log("老弟，你走了!Index页面");
+    };
+  }, []);
+  return <h2>JSPang.com</h2>;
+}
+
+function List() {
+  useEffect(() => {
+    console.log("useEffect=>老弟，你来了！List页面");
+  });
+
+  return <h2>List-Page</h2>;
 }
 
 export default App;
