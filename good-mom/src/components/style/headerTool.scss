@@ -1,0 +1,17 @@
+.tool {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  .tool-left {
+    color: #fff;
+    font-size: 16px;
+  }
+  .tool-right {
+    display: flex;
+    .exit {
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  }
+}

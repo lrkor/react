@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { Layout } from "antd";
-import "../style/common.scss";
-const { Header, Content, Sider, Footer } = Layout;
 
-import Menu from "../components/Menu";
+import "../style/common.scss";
+import MenuList from "../components/MenuList";
+import HeaderTool from "../components/HeaderTool";
+const { Header, Content, Sider, Footer } = Layout;
 
 class AppRouter extends Component {
   constructor(props) {
@@ -17,10 +18,12 @@ class AppRouter extends Component {
     return (
       <Router>
         <Layout>
-          <Header className="header">自动化测试</Header>
+          <Header>
+            <HeaderTool />
+          </Header>
           <Layout>
             <Sider width={200} className="site-layout-background">
-              <Menu />
+              <MenuList />
             </Sider>
             <Layout>
               <Content
