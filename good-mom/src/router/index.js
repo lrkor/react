@@ -2,32 +2,82 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import { Layout, Menu } from "antd";
-const { Header, Content, Sider } = Layout;
-// const { SubMenu } = Menu;
+import "../style/common.scss";
+
+import {
+  AppstoreOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  PieChartOutlined,
+  DesktopOutlined,
+  ContainerOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
+
+const { SubMenu } = Menu;
+
+const { Header, Content, Sider, Footer } = Layout;
 
 class AppRouter extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      collapsed: false,
       defaultSelectedKeys: ["2"],
     };
   }
+
+  toggleCollapsed = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  };
+
   render() {
     return (
-      <Router basename="/goodMom">
+      <Router>
         <Layout>
-          <Header className="header">博客后台管理系统</Header>
+          <Header className="header">自动化测试</Header>
           <Layout>
             <Sider width={200} className="site-layout-background">
               <Menu
+                defaultSelectedKeys={["1"]}
+                defaultOpenKeys={["sub1"]}
                 mode="inline"
-                defaultSelectedKeys={this.state.defaultSelectedKeys}
-                style={{ height: "100%", borderRight: 0 }}
                 theme="dark"
+                inlineCollapsed={this.state.collapsed}
               >
-                <Menu.Item key="2">
-                  <Link to="/">文章列表</Link>
+                <Menu.Item key="1" icon={<PieChartOutlined />}>
+                  Option 1
                 </Menu.Item>
+                <Menu.Item key="2" icon={<DesktopOutlined />}>
+                  Option 2
+                </Menu.Item>
+                <Menu.Item key="3" icon={<ContainerOutlined />}>
+                  Option 3
+                </Menu.Item>
+                <SubMenu
+                  key="sub1"
+                  icon={<MailOutlined />}
+                  title="Navigation One"
+                >
+                  <Menu.Item key="5">Option 5</Menu.Item>
+                  <Menu.Item key="6">Option 6</Menu.Item>
+                  <Menu.Item key="7">Option 7</Menu.Item>
+                  <Menu.Item key="8">Option 8</Menu.Item>
+                </SubMenu>
+                <SubMenu
+                  key="sub2"
+                  icon={<AppstoreOutlined />}
+                  title="Navigation Two"
+                >
+                  <Menu.Item key="9">Option 9</Menu.Item>
+                  <Menu.Item key="10">Option 10</Menu.Item>
+                  <SubMenu key="sub3" title="Submenu">
+                    <Menu.Item key="11">Option 11</Menu.Item>
+                    <Menu.Item key="12">Option 12</Menu.Item>
+                  </SubMenu>
+                </SubMenu>
               </Menu>
             </Sider>
             <Layout>
@@ -49,6 +99,7 @@ class AppRouter extends Component {
                   </Switch>
                 </div>
               </Content>
+              <Footer>Footer</Footer>
             </Layout>
           </Layout>
         </Layout>
