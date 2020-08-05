@@ -19,7 +19,7 @@ class AppRouter extends Component {
       <Router>
         <Layout>
           <Header>
-            <HeaderTool />
+            <HeaderTool history={this.props.history} />
           </Header>
           <Layout>
             <Sider width={200} className="site-layout-background">

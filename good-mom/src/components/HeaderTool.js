@@ -13,6 +13,10 @@ export class HeaderTool extends Component {
     this.state = {};
   }
 
+  exit = () => {
+    this.props.history.push("/login");
+  };
+
   render() {
     return (
       <Fragment>
@@ -20,7 +24,7 @@ export class HeaderTool extends Component {
           <div className="tool-left">自动化测试</div>
           <div className="tool-right">
             <div className="name">超级管理员</div>
-            <div className="exit">
+            <div className="exit" onClick={() => this.exit()}>
               <IconFont type="icon-tuichu" />
             </div>
           </div>
