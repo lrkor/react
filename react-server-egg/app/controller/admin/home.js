@@ -9,7 +9,7 @@ class AdminController extends Controller {
     obj.time = Date.parse(obj.time);
     const sql = `INSERT INTO article (type,title,content,introduce,time,count) VALUES ('${
       obj.type
-    }','${obj.title}','${obj.content}','${obj.introducemd}',${
+    }','${obj.title}',"${obj.content}",'${obj.introducemd}',${
       obj.time / 1000
     },0)`;
     const result = await this.app.mysql.query(sql);
