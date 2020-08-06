@@ -1,7 +1,16 @@
 import React, { Component, Fragment } from "react";
 import marked from "marked";
 import "../style/workbench.css";
-import { Row, Col, Input, Select, Button, DatePicker, Popconfirm,message } from "antd";
+import {
+  Row,
+  Col,
+  Input,
+  Select,
+  Button,
+  DatePicker,
+  Popconfirm,
+  message,
+} from "antd";
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -41,8 +50,8 @@ class Add extends Component {
   // 发布文章
   release = (e) => {
     React.$api.admin.add(this.state).then((res) => {
-        message.success('新增成功');
-        this.props.history.push('/')
+      message.success("新增成功");
+      this.props.history.push("/");
     });
   };
 
@@ -68,10 +77,16 @@ class Add extends Component {
       <Fragment>
         <div className="workbench">
           <Row gutter={5}>
-            <Col span={18}>
+            <Col span={24}>
               <Row gutter={10}>
-                <Col span={20}>
-                  <Input onChange={this.changeTitle} placeholder="博客标题" />
+                <Col span={8}>
+                  <Input onChange={this.changeTitle} placeholder="博客标题：" />
+                </Col>
+                <Col span={8}>
+                  <Input
+                    onChange={this.changeTextArea}
+                    placeholder="文章简介："
+                  />
                 </Col>
                 <Col span={4}>
                   &nbsp;
@@ -85,8 +100,31 @@ class Add extends Component {
                     <Option value="3">学习</Option>
                   </Select>
                 </Col>
+                <Col span={4}>
+                  <Row>
+                    <Col span={24} style={{ textAlign: "right" }}>
+                      <DatePicker
+                        onChange={this.changeDate}
+                        placeholder="发布日期"
+                      />
+                      <Button type="primary" style={{ marginLeft: "20px" }}>
+                        <Popconfirm
+                          title="确定新增吗?"
+                          onConfirm={() => this.release()}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                          发布文章
+                        </Popconfirm>
+                      </Button>
+                    </Col>
+                  </Row>
+                </Col>
               </Row>
-              <Row gutter={10} style={{ marginTop: "20px" }}>
+              <Row
+                gutter={10}
+                style={{ marginTop: "20px", height: "calc(100%-52px)" }}
+              >
                 <Col span={12}>
                   <TextArea
                     className="markdown-content"
@@ -102,38 +140,6 @@ class Add extends Component {
                       __html: this.state.markdownContent,
                     }}
                   ></div>
-                </Col>
-              </Row>
-            </Col>
-
-            <Col span={6}>
-              <Row>
-                <Col span={24}>
-                  <DatePicker
-                    onChange={this.changeDate}
-                    placeholder="发布日期"
-                  />
-                  <Button
-                    type="primary"
-                    style={{ marginLeft: "20px" }}
-                  >
-                    <Popconfirm
-                      title="确定新增吗?"
-                      onConfirm={() => this.release()}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      发布文章
-                    </Popconfirm>
-                  </Button>
-                </Col>
-                <Col span={24}>
-                  <TextArea
-                    rows={4}
-                    onChange={this.changeTextArea}
-                    placeholder="文章简介"
-                    style={{ marginTop: "20px" }}
-                  />
                 </Col>
               </Row>
             </Col>

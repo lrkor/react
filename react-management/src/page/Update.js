@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { Spin } from 'antd';
+import { Spin } from "antd";
 import marked from "marked";
-import moment from 'moment';
+import moment from "moment";
 import "../style/workbench.css";
 import {
   Row,
@@ -57,7 +57,6 @@ class Update extends Component {
         type: data.type,
         time: data.time,
       });
-      console.log(this.state);
       this.setState({ loading: false });
     });
   }
@@ -72,7 +71,6 @@ class Update extends Component {
 
   // 发布文章
   release = (e) => {
-      console.log(this.state);
     React.$api.admin.update(this.state).then((res) => {
       message.success("更新成功");
       this.props.history.push("/");
@@ -100,7 +98,7 @@ class Update extends Component {
     if (this.state.loading) {
       return (
         <div className="loading">
-            <Spin />
+          <Spin />
         </div>
       );
     }
@@ -108,13 +106,20 @@ class Update extends Component {
       <Fragment>
         <div className="workbench">
           <Row gutter={5}>
-            <Col span={18}>
+            <Col span={24}>
               <Row gutter={10}>
-                <Col span={20}>
+                <Col span={8}>
                   <Input
                     defaultValue={this.state.title}
                     onChange={this.changeTitle}
                     placeholder="博客标题"
+                  />
+                </Col>
+                <Col span={8}>
+                  <Input
+                    onChange={this.changeTextArea}
+                    defaultValue={this.state.introducemd}
+                    placeholder="文章简介："
                   />
                 </Col>
                 <Col span={4}>
@@ -128,6 +133,27 @@ class Update extends Component {
                     <Option value="2">生活</Option>
                     <Option value="3">学习</Option>
                   </Select>
+                </Col>
+                <Col span={4}>
+                  <Row>
+                    <Col span={24}>
+                      <DatePicker
+                        onChange={this.changeDate}
+                        placeholder="发布日期"
+                        defaultValue={moment(this.state.time, "YYYY-MM-DD")}
+                      />
+                      <Button type="primary" style={{ marginLeft: "20px" }}>
+                        <Popconfirm
+                          title="确定新增吗?"
+                          onConfirm={() => this.release()}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                          发布文章
+                        </Popconfirm>
+                      </Button>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
               <Row gutter={10} style={{ marginTop: "20px" }}>
@@ -147,37 +173,6 @@ class Update extends Component {
                       __html: this.state.markdownContent,
                     }}
                   ></div>
-                </Col>
-              </Row>
-            </Col>
-
-            <Col span={6}>
-              <Row>
-                <Col span={24}>
-                  <DatePicker
-                    onChange={this.changeDate}
-                    placeholder="发布日期"
-                    defaultValue={moment(this.state.time, 'YYYY-MM-DD')}
-                  />
-                  <Button type="primary" style={{ marginLeft: "20px" }}>
-                    <Popconfirm
-                      title="确定新增吗?"
-                      onConfirm={() => this.release()}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      发布文章
-                    </Popconfirm>
-                  </Button>
-                </Col>
-                <Col span={24}>
-                  <TextArea
-                    rows={4}
-                    defaultValue={this.state.introducemd}
-                    onChange={this.changeTextArea}
-                    placeholder="文章简介"
-                    style={{ marginTop: "20px" }}
-                  />
                 </Col>
               </Row>
             </Col>

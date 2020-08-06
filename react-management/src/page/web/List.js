@@ -60,11 +60,11 @@ class Web extends Component {
   }
 
   componentWillMount() {
-    this.getList(1);
+    this.getList();
   }
 
   //获取列表
-  getList(page) {
+  getList(page = this.state.page) {
     React.$api.admin.list({ page, size: 10 }).then((res) => {
       let list = res.data;
       list.forEach((item) => {
@@ -77,26 +77,35 @@ class Web extends Component {
 
   //删除文章
   del(id) {
+    if (this.state.list.length === 1 && this.state.page !== 1) {
+      this.state.page -= 1;
+    }
     React.$api.admin.delete({ id }).then((res) => {
-        this.getList(this.state.page);
-        message.success('删除成功');
+      this.getList(this.state.page);
+      message.success("删除成功");
     });
   }
 
   changePage = (page) => {
-    this.setState({ page });
-    this.getList(page);
+    this.setState({ page }, () => {
+      this.getList();
+    });
   };
 
   update = (id) => {
-    this.props.history.push(`/update/${id}`)
+    this.props.history.push(`/update/${id}`);
   };
 
   render() {
     return (
       <div className="list">
         <div className="header">
-          <Button type="primary" onClick={()=>this.props.history.push('/add')}>新增</Button>
+          <Button
+            type="primary"
+            onClick={() => this.props.history.push("/add")}
+          >
+            新增
+          </Button>
         </div>
         <div className="table-body">
           <Table

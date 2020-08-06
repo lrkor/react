@@ -1,6 +1,7 @@
 .workbench{
     padding: 20px;
     height: 100%;
+    overflow: hidden;
 }
 .loading{
     height: 100%;
@@ -10,7 +11,7 @@
 }
 .markdown-content {
     font-size: 16px !important;
-    height: 500px!important;
+    height: 80%!important;
 }
 
 .show-html {
@@ -18,7 +19,7 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
-    height: 500px!important;
+    height: 80%!important;
     background-color: #f0f0f0;
     overflow: auto;
 }
