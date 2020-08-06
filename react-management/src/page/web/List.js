@@ -59,7 +59,7 @@ class Web extends Component {
     ];
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getList();
   }
 
@@ -78,7 +78,8 @@ class Web extends Component {
   //删除文章
   del(id) {
     if (this.state.list.length === 1 && this.state.page !== 1) {
-      this.state.page -= 1;
+      let page = this.state.page + 1;
+      this.setState({ page });
     }
     React.$api.admin.delete({ id }).then((res) => {
       this.getList(this.state.page);
@@ -117,10 +118,9 @@ class Web extends Component {
               total: this.state.total,
               onChange: this.changePage,
             }}
-            rowKey={(record, index) => record.id}
+            rowKey={(record) => record.id}
           />
         </div>
-        <div className="table-paging"></div>
       </div>
     );
   }
