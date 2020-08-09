@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 import { Menu } from "antd";
 
 const { SubMenu } = Menu;
@@ -7,79 +8,39 @@ export class MenuList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapsed: false,
-      defaultSelectedKeys: ["11"],
-      defaultOpenKeys: ["1"],
+      defaultOpenKeys: ["/management/system"],
+      defaultSelectedKeys: ["/management/system/project"],
+      firstHide: true, // 点击收缩菜单，第一次隐藏展开子菜单，openMenu时恢复
       menuList: [
         {
-          id: 1,
+          name: "系统首页",
+          path: "/management/system",
+          children: [
+            {
+              name: "项目管理",
+              path: "/management/system/project",
+            },
+            {
+              name: "公共接口",
+              path: "/management/system/interface",
+            },
+            {
+              name: "计划管理",
+              path: "/management/system/plan",
+            },
+          ],
+        },
+        {
           name: "人员管理",
+          path: "/management/user",
           children: [
             {
-              id: 11,
-              name: "人员列表1",
+              name: "人员列表",
+              path: "/management/user/list",
             },
             {
-              id: 12,
-              name: "人员列表2",
-            },
-            {
-              id: 13,
-              name: "人员列表3",
-            },
-          ],
-        },
-        {
-          id: 2,
-          name: "测试1",
-          children: [
-            {
-              id: 21,
-              name: "测试1",
-            },
-            {
-              id: 22,
-              name: "测试1",
-            },
-            {
-              id: 23,
-              name: "测试1",
-            },
-          ],
-        },
-        {
-          id: 3,
-          name: "测试2",
-          children: [
-            {
-              id: 31,
-              name: "测试2",
-            },
-            {
-              id: 32,
-              name: "测试2",
-            },
-            {
-              id: 33,
-              name: "测试2",
-            },
-          ],
-        },
-        {
-          id: 4,
-          name: "测试3",
-          children: [
-            {
-              id: 41,
-              name: "测试3",
-            },
-            {
-              id: 42,
-              name: "测试3",
-            },
-            {
-              id: 43,
-              name: "测试3",
+              name: "权限管理",
+              path: "/management/user/permission",
             },
           ],
         },
@@ -87,33 +48,39 @@ export class MenuList extends Component {
     };
   }
 
-  toggleCollapsed = () => {
+  componentWillMount() {
+    let pathname = this.props.history.location.pathname;
+    const openKeys = "/management/" + pathname.split("/")[2];
     this.setState({
-      collapsed: !this.state.collapsed,
+      defaultOpenKeys: [openKeys],
+      defaultSelectedKeys: [pathname],
     });
-  };
+  }
 
   render() {
     return (
       <Fragment>
         <Menu
-          defaultSelectedKeys={this.state.defaultSelectedKeys}
           defaultOpenKeys={this.state.defaultOpenKeys}
+          defaultSelectedKeys={this.state.defaultSelectedKeys}
           mode="inline"
           theme="dark"
-          inlineCollapsed={this.state.collapsed}
         >
-          {this.state.menuList.map((item, index) => {
+          {this.state.menuList.map((item) => {
             if (item.children) {
               return (
-                <SubMenu key={item.id} title={item.name}>
-                  {item.children.map((item1, index1) => {
-                    return <Menu.Item key={item1.id}>{item1.name}</Menu.Item>;
+                <SubMenu key={item.path} title={item.name}>
+                  {item.children.map((item1) => {
+                    return (
+                      <Menu.Item key={item1.path}>
+                        <Link to={item1.path}>{item1.name}</Link>
+                      </Menu.Item>
+                    );
                   })}
                 </SubMenu>
               );
             } else {
-              return <Menu.Item key={item.id}>{item.name}</Menu.Item>;
+              return <Menu.Item key={item.path}>{item.name}</Menu.Item>;
             }
           })}
         </Menu>

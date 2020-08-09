@@ -15,7 +15,7 @@ class BaseRouter extends Component {
         <Switch>
           <Route path="/" exact component={Login} />
           <Route path="/login" exact component={Login} />
-          <Route path="/management" exact component={index} />
+          <Route path="/management" component={index} />
         </Switch>
       </Router>
     );

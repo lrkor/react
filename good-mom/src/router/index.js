@@ -1,11 +1,19 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Layout } from "antd";
 
 import "../style/common.scss";
 import MenuList from "../components/MenuList";
 import HeaderTool from "../components/HeaderTool";
+
+import Interface from "../page/System/Interface";
+import Plan from "../page/System/Plan";
+import Project from "../page/System/Project";
+
+import Permission from "../page/User/Permission";
+import UserList from "../page/User/List";
+
 const { Header, Content, Sider, Footer } = Layout;
 
 class AppRouter extends Component {
@@ -23,7 +31,7 @@ class AppRouter extends Component {
           </Header>
           <Layout>
             <Sider width={200} className="site-layout-background">
-              <MenuList />
+              <MenuList history={this.props.history} />
             </Sider>
             <Layout>
               <Content
@@ -36,11 +44,33 @@ class AppRouter extends Component {
               >
                 <div className="main">
                   <Switch>
-                    {/* <Route path="/" exact component={WebList} />
-                    <Route path="/add" exact component={Add} />
-                    <Route path="/update/:id" exact component={Update} />
-                    <Route path="/learn/list" component={LearnList} />
-                    <Route path="/life/list" component={LifeList} /> */}
+                    <Route path="/management" exact component={Project} />
+                    <Route
+                      path="/management/system/project"
+                      exact
+                      component={Project}
+                    />
+                    <Route
+                      path="/management/system/interface"
+                      exact
+                      component={Interface}
+                    />
+                    <Route
+                      path="/management/system/plan"
+                      exact
+                      component={Plan}
+                    />
+
+                    <Route
+                      path="/management/user/list"
+                      exact
+                      component={UserList}
+                    />
+                    <Route
+                      path="/management/user/permission"
+                      exact
+                      component={Permission}
+                    />
                   </Switch>
                 </div>
               </Content>
