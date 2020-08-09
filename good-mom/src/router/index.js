@@ -24,7 +24,7 @@ class AppRouter extends Component {
 
   render() {
     return (
-      <Router>
+      <Router basename="/goodmom">
         <Layout>
           <Header>
             <HeaderTool history={this.props.history} />

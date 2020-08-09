@@ -64,7 +64,7 @@ export class index extends Component {
     return (
       <div className="user-list">
         <div className="user-list-title">
-          <Button>新增</Button>
+          <Button type="primary">新增</Button>
         </div>
         <div className="user-list-table">
           <Table

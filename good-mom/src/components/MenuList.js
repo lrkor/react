@@ -50,6 +50,7 @@ export class MenuList extends Component {
 
   UNSAFE_componentWillMount() {
     let pathname = this.props.history.location.pathname;
+    console.log(pathname);
     const openKeys = "/management/" + pathname.split("/")[2];
     this.setState({
       defaultOpenKeys: [openKeys],
