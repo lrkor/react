@@ -18,10 +18,11 @@ export class index extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const obj = {
       img: add,
       title: "默认添加项目",
+      describe: "",
     };
     let list = this.state.list;
     list.push(obj);
@@ -34,9 +35,9 @@ export class index extends Component {
         <div className="system-project-list">
           {this.state.list.map((item) => {
             return (
-              <div className="system-project-list-item" key={item}>
+              <div className="system-project-list-item" key={item.img}>
                 <div className="top">
-                  <img src={item.img} alt="图片"/>
+                  <img src={item.img} alt="图片" />
                 </div>
                 <div className="title">{item.title}</div>
                 <div className="describe">{item.describe}</div>

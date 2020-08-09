@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Table, Popconfirm, message } from "antd";
+import { Button, Table, Popconfirm } from "antd";
 
 import "./index.scss";
 

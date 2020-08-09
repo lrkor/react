@@ -48,7 +48,7 @@ export class MenuList extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     let pathname = this.props.history.location.pathname;
     const openKeys = "/management/" + pathname.split("/")[2];
     this.setState({
