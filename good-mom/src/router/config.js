@@ -27,18 +27,6 @@ const routes = [
     auth: true,
     routes: [
       {
-        path: "/management",
-        component: Project,
-        exact: true,
-        auth: true,
-      },
-      {
-        path: "/management/system/project",
-        component: Project,
-        exact: true,
-        auth: true,
-      },
-      {
         path: "/management/system/project",
         component: Project,
         exact: true,

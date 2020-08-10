@@ -12,7 +12,7 @@ export class index extends Component {
     if (username === "admin" && password === "123456") {
       message.success("登录成功");
       sessionStorage.setItem("auth", "222");
-      this.props.history.push("/management");
+      this.props.history.push("/management/system/project");
     } else {
       message.error("用户名账号不正确");
     }

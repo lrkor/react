@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 import "./style/index.scss";
 
@@ -62,4 +63,4 @@ export class index extends Component {
   }
 }
 
-export default index;
+export default withRouter(index);

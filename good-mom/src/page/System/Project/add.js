@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 import "./style/add.scss";
 
@@ -13,4 +14,5 @@ export class add extends Component {
   }
 }
 
-export default add;
+// export default add;
+export default withRouter(add);
