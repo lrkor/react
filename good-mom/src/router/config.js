@@ -33,7 +33,7 @@ const routes = [
         auth: true,
       },
       {
-        path: "/management/system/project/add",
+        path: "/management/system/projectAdd",
         component: ProjectAdd,
         exact: true,
         auth: true,
