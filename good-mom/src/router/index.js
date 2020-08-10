@@ -10,6 +10,7 @@ import HeaderTool from "../components/HeaderTool";
 import Interface from "../page/System/Interface";
 import Plan from "../page/System/Plan";
 import Project from "../page/System/Project";
+import ProjectAdd from "../page/System/Project/add";
 
 import Permission from "../page/User/Permission";
 import UserList from "../page/User/List";
@@ -49,6 +50,11 @@ class AppRouter extends Component {
                       path="/management/system/project"
                       exact
                       component={Project}
+                    />
+                    <Route
+                      path="/management/system/project/add"
+                      exact
+                      component={ProjectAdd}
                     />
                     <Route
                       path="/management/system/interface"

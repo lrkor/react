@@ -1,20 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+
+import "./style/add.scss";
 
 export class add extends Component {
-   constructor(props){
-       super(props)
-       this.state = {
-           
-       }
-   }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+  render() {
+    return <div className="system-project-add">新增项目</div>;
+  }
 }
 
 export default add;

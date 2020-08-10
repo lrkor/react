@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./index.scss";
+import "./style/index.scss";
 
 import add from "../../../assets/system/add.jpg";
 
@@ -29,13 +29,25 @@ export class index extends Component {
     this.setState({ list });
   }
 
+  go = (item) => {
+    if (item.title === "默认添加项目") {
+      this.props.history.push(`/management/system/project/add`);
+    } else {
+      console.log("去项目列表");
+    }
+  };
+
   render() {
     return (
       <div className="system-project">
         <div className="system-project-list">
           {this.state.list.map((item) => {
             return (
-              <div className="system-project-list-item" key={item.img}>
+              <div
+                className="system-project-list-item"
+                key={item.img}
+                onClick={() => this.go(item)}
+              >
                 <div className="top">
                   <img src={item.img} alt="图片" />
                 </div>
