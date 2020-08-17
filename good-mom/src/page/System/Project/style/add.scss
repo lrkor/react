@@ -1,3 +1,9 @@
 .system-project-add {
-//   padding: 20px;
+  .form-body {
+    width: 800px;
+    margin: 20px auto;
+    .ant-btn{
+        margin-right: 20px;
+    }
+  }
 }
