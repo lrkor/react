@@ -144,7 +144,7 @@ class Update extends Component {
                       />
                       <Button type="primary" style={{ marginLeft: "20px" }}>
                         <Popconfirm
-                          title="确定新增吗?"
+                          title="确定修改吗?"
                           onConfirm={() => this.release()}
                           okText="Yes"
                           cancelText="No"
