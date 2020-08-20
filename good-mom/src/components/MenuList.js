@@ -21,6 +21,10 @@ export class MenuList extends Component {
               path: "/management/system/project",
             },
             {
+              name: "项目分组",
+              path: "/management/system/group",
+            },
+            {
               name: "公共接口",
               path: "/management/system/interface",
             },
