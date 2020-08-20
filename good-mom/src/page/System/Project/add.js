@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-
+import { withRouter } from "react-router-dom";
 import "./style/add.scss";
 
-import { Form, Input, Button, Upload, message } from "antd";
+import { Form, Input, Button, Upload, message, Select } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 
+const { Option } = Select;
 const layout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 20 },
@@ -26,8 +27,11 @@ function beforeUpload(file) {
 }
 
 export class add extends Component {
+ 
+
   constructor(props) {
     super(props);
+    this.formRef = React.createRef();
     this.state = {
       loading: false,
     };
@@ -35,12 +39,21 @@ export class add extends Component {
 
   onFinish = (values) => {
     console.log("Success:", values);
+    // console.log(this.props)
+    this.props.history.goBack();
   };
 
   onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
+  handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+
+  onReset = () => {
+    this.formRef.current.resetFields();
+  };
   render() {
     const uploadButton = (
       <div>
@@ -55,23 +68,11 @@ export class add extends Component {
           <Form
             {...layout}
             name="basic"
-            initialValues={{ remember: true }}
+            ref={this.formRef}
             onFinish={this.onFinish}
             onFinishFailed={this.onFinishFailed}
           >
-            <Form.Item
-              label="项目名称："
-              name="name"
-              rules={[{ required: true, message: "请输入项目名称！" }]}
-            >
-              <Input />
-            </Form.Item>
-
-            <Form.Item label="项目简介：" name="describe">
-              <Input />
-            </Form.Item>
-
-            <Form.Item label="图片：" name="img">
+            <Form.Item label="项目图片：" name="img">
               <Upload
                 name="avatar"
                 listType="picture-card"
@@ -88,11 +89,64 @@ export class add extends Component {
                 )}
               </Upload>
             </Form.Item>
+            <Form.Item
+              label="项目名称："
+              name="name"
+              rules={[{ required: true, message: "请输入项目名称！" }]}
+            >
+              <Input size="large" />
+            </Form.Item>
+
+            <Form.Item
+              label="项目描述："
+              name="describe"
+              rules={[{ required: true, message: "请输入项目描述！" }]}
+            >
+              <Input size="large" />
+            </Form.Item>
+
+            <Form.Item label="项目环境：" name="environment">
+              <Select
+                onChange={this.handleChange}
+                placeholder="非必填"
+                size="large"
+              >
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+                <Option value="Yiminghe">yiminghe</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item label="其他环境1：" name="environment1">
+              <Select
+                onChange={this.handleChange}
+                placeholder="非必填"
+                size="large"
+              >
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+                <Option value="Yiminghe">yiminghe</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item label="其他环境2：" name="environment2">
+              <Select
+                onChange={this.handleChange}
+                placeholder="非必填"
+                size="large"
+              >
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+                <Option value="Yiminghe">yiminghe</Option>
+              </Select>
+            </Form.Item>
 
             <Form.Item {...tailLayout}>
-              <Button htmlType="button">取消</Button>
+              <Button htmlType="button" onClick={this.onReset}>
+                重置
+              </Button>
               <Button type="primary" htmlType="submit">
-                提交
+                立即创建
               </Button>
             </Form.Item>
           </Form>
@@ -102,4 +156,4 @@ export class add extends Component {
   }
 }
 
-export default add;
+export default withRouter(add);
