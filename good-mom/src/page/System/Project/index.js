@@ -34,7 +34,7 @@ export class index extends Component {
     if (item.title === "默认添加项目") {
       this.props.history.push(`/management/system/projectAdd`);
     } else {
-      console.log("去项目列表");
+      this.props.history.push(`/management/system/projectGroup`);
     }
   };
 

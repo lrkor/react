@@ -21,10 +21,6 @@ export class MenuList extends Component {
               path: "/management/system/project",
             },
             {
-              name: "项目分组",
-              path: "/management/system/group",
-            },
-            {
               name: "公共接口",
               path: "/management/system/interface",
             },
@@ -54,7 +50,7 @@ export class MenuList extends Component {
 
   UNSAFE_componentWillMount() {
     let pathname = this.props.history.location.pathname;
-    if (pathname.indexOf("projectAdd") > 0) {
+    if (pathname.indexOf("project") > 0) {
       pathname = "/management/system/project";
     }
     const openKeys = "/management/" + pathname.split("/")[2];

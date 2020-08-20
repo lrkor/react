@@ -7,7 +7,7 @@ import Plan from "../page/System/Plan";
 
 import Project from "../page/System/Project";
 import ProjectAdd from "../page/System/Project/add";
-import Project from "../page/System/Group/List";
+import Group from "../page/System/Group";
 
 import Permission from "../page/User/Permission";
 import UserList from "../page/User/List";
@@ -37,6 +37,12 @@ const routes = [
       {
         path: "/management/system/projectAdd",
         component: ProjectAdd,
+        exact: true,
+        auth: true,
+      },
+      {
+        path: "/management/system/projectGroup",
+        component: Group,
         exact: true,
         auth: true,
       },
