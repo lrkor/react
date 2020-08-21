@@ -1,15 +1,24 @@
 import React, { Component } from "react";
-import { Modal, Form, Input, Button } from "antd";
+import { Modal, Form, Input, Button, Select } from "antd";
 
-export class DialogUpdate extends Component {
+const { Option } = Select;
+
+const layout = {
+  labelCol: { span: 4 },
+  wrapperCol: { span: 20 },
+};
+
+export class DialogUpdateInterface extends Component {
   constructor(props) {
     super(props);
     this.formRef = React.createRef();
     this.state = {
       visible: false,
-      module: "",
-      remark: "",
       id: "",
+      name: "",
+      address: "",
+      request: "",
+      remark: "",
     };
   }
   showModal = () => {
@@ -52,9 +61,11 @@ export class DialogUpdate extends Component {
   //获取详情
   getDetail = (id) => {
     this.setState({
-      module: "222",
-      remark: "222",
       id,
+      name: "22",
+      address: "22",
+      request: "GET",
+      remark: "22",
     });
   };
 
@@ -62,35 +73,56 @@ export class DialogUpdate extends Component {
     return (
       <div className="dialog">
         <Modal
-          title="新增分组"
+          title="修改接口管理内容"
           visible={this.state.visible}
           footer={null}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
           <Form
+            {...layout}
             name="basic"
             ref={this.formRef}
-            initialValues={{
-              module: this.state.module,
-              remark: this.state.remark,
-            }}
             onFinish={this.onFinish}
             onFinishFailed={this.onFinishFailed}
+            initialValues={{
+              name: this.state.name,
+              address: this.state.address,
+              request: this.state.request,
+              remark: this.state.remark,
+            }}
           >
             <Form.Item
-              label="分组模块："
-              name="module"
-              rules={[{ required: true, message: "请输入分组模块！" }]}
+              label="接口名称："
+              name="name"
+              rules={[{ required: true, message: "请输入接口名称！" }]}
             >
               <Input size="large" />
             </Form.Item>
 
             <Form.Item
-              label="备注信息："
-              name="remark"
-              rules={[{ required: true, message: "请输入备注信息！" }]}
+              label="接口地址："
+              name="address"
+              rules={[{ required: true, message: "请输入接口地址！" }]}
             >
+              <Input size="large" />
+            </Form.Item>
+
+            <Form.Item
+              label="请求方式："
+              name="request"
+              rules={[{ required: true, message: "请选择请求方式！" }]}
+            >
+              <Select
+                size="large"
+                // onChange={handleChange}
+              >
+                <Option value="GET">GET</Option>
+                <Option value="POST">POST</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item label="备注：" name="remark">
               <Input size="large" />
             </Form.Item>
 
@@ -113,4 +145,4 @@ export class DialogUpdate extends Component {
   }
 }
 
-export default DialogUpdate;
+export default DialogUpdateInterface;

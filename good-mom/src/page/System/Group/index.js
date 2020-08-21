@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Button, Table, Popconfirm, message } from "antd";
+import { withRouter } from "react-router-dom";
+import { Button, Table, Popconfirm } from "antd";
 import DialogAdd from "./components/DialogAdd";
-import "./style/index.scss";
 import DialogUpdate from "./components/DialogUpdate";
+
+import "./style/index.scss";
 
 export class index extends Component {
   constructor(props) {
@@ -47,7 +49,7 @@ export class index extends Component {
         render: (text, record) => (
           <div>
             <Button
-              //   onClick={() => this.update(record.id)}
+              onClick={() => this.goDetaie(record.id)}
               style={{ marginRight: "10px" }}
             >
               查看
@@ -79,9 +81,15 @@ export class index extends Component {
     this.refs.DialogAdd.showModal();
   };
 
+  //   打开更新弹框
   openUpdate = (id) => {
     this.refs.DialogUpdate.showModal();
     this.refs.DialogUpdate.getDetail(id);
+  };
+
+  //   去分组详情
+  goDetaie = (id) => {
+    this.props.history.push(`/management/system/projectInterfaceList?id=${id}`);
   };
 
   render() {
@@ -112,4 +120,5 @@ export class index extends Component {
   }
 }
 
-export default index;
+export default withRouter(index);
+

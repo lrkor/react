@@ -1,0 +1,14 @@
+.system-interface {
+  .system-interface-title {
+    display: flex;
+    align-items: center;
+    .system-interface-title-item {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+    }
+  }
+  .system-interface-table{
+      margin-top: 20px;
+  }
+}
